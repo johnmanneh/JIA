@@ -1,33 +1,30 @@
 from django.db import models
 
 # Create your models here.
-class Person(models.Modle):
-    firstname       = models.CharFields(max_length=30)
-    middlename      = models.CharFields(max_length=30)
-    lastname        = models.CharFields(max_length=30)
-    address         = models.CharFields(max_length=50)
-    gender          = models.ForeignKey(Gender,on_delete=models.CASCADE)
-    
-class Gender(models.Model):
-    gender          = [(1,' '),(2,'Male'),(3,'Female')]
-    genderField     = models.CharFields(
-                    max_length = 6,
-                    choice = gender,
-                    default = 'Null'
+class Person(models.Model):
+    firstname       = models.CharField(max_length=30)
+    middlename      = models.CharField(max_length=30)
+    lastname        = models.CharField(max_length=30)
+    address         = models.CharField(max_length=50)
+    gender          = [('1',' '),('2','Male'),('3','Female')]
+    genderField     = models.CharField(
+                    max_length  = 6,
+                    choices     = gender,
+                    default     = 'null'
     )
-    
-class Pastors(models.Model):
+
+class Pastor(models.Model):
     pastor          = models.ForeignKey(Person,on_delete=models.CASCADE)
-    title           = models.CharFields(max_length=10)
+    title           = models.CharField(max_length=10)
     
 
-class Singers(models.Model):
+class Singer(models.Model):
     singer          = models.ForeignKey(Person,on_delete=models.CASCADE)
 
 class Band(models.Model):
     band            = models.ForeignKey(Person,on_delete=models.CASCADE)
 
-class Ushers(models.Model):
+class Usher(models.Model):
     Ushers          = models.ForeignKey(Person,on_delete=models.CASCADE)
 
 class Deacon(models.Model):
