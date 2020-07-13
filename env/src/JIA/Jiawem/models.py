@@ -6,12 +6,13 @@ class Person(models.Model):
     middlename      = models.CharField(max_length=30)
     lastname        = models.CharField(max_length=30)
     address         = models.CharField(max_length=50)
-    gender          = [('1',' '),('2','Male'),('3','Female')]
-    genderField     = models.CharField(
+    genderField          = [('1',' '),('2','Male'),('3','Female')]
+    gender     = models.CharField(
                     max_length  = 6,
-                    choices     = gender,
+                    choices     = genderField,
                     default     = 'null'
     )
+    
 
 class Pastor(models.Model):
     pastor          = models.ForeignKey(Person,on_delete=models.CASCADE)
@@ -20,7 +21,7 @@ class Pastor(models.Model):
 
 class Singer(models.Model):
     singer          = models.ForeignKey(Person,on_delete=models.CASCADE)
-
+   
 class Band(models.Model):
     band            = models.ForeignKey(Person,on_delete=models.CASCADE)
 
